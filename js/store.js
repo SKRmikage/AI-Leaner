@@ -105,16 +105,7 @@
     return [
       {
         role: "assistant",
-        content: "你好！我是你的 AI 學習導師 🎓
-
-你可以告訴我想學什麼、希望多久完成、每天能投入多少時間，我會：
-1. 給你學習路徑與資源建議；
-2. 排出每週任務與日程表；
-3. 和你討論、修改，達成共識後寫入你的學習規劃。
-
-目前是「示範模式」（內建規則式導師）。到 ⚙️ 設定 填入 OpenAI 相容 API 後，即可獲得真正的 AI 規劃。
-
-可以先按下方「載入範例：遊戲渲染」看看效果，或直接輸入你的學習目標！",
+        content: "你好！我是你的 AI 學習導師 🎓\n\n你可以告訴我想學什麼、希望多久完成、每天能投入多少時間，我會：\n1. 給你學習路徑與資源建議；\n2. 排出每週任務與日程表；\n3. 和你討論、修改，達成共識後寫入你的學習規劃。\n\n目前是「示範模式」（內建規則式導師）。到 ⚙️ 設定 填入 OpenAI 相容 API 後，即可獲得真正的 AI 規劃。\n\n可以先按下方「載入範例：遊戲渲染」看看效果，或直接輸入你的學習目標！",
         ts: Date.now()
       }
     ];
@@ -221,6 +212,17 @@
     return data;
   }
 
+  function importData(obj) {
+    obj = obj || {};
+    data = {
+      plan: normalizePlan(obj.plan),
+      chat: normalizeChat(obj.chat),
+      settings: normalizeSettings(obj.settings)
+    };
+    save();
+    return data;
+  }
+
   function mutatePlan(fn) {
     data.plan = normalizePlan(fn(data.plan));
     data.plan.updatedAt = new Date().toISOString();
@@ -261,6 +263,8 @@
     load: load,
     save: save,
     reset: reset,
+    importData: importData,
+    normalizePlan: normalizePlan,
     mutatePlan: mutatePlan,
     addMessage: addMessage,
     addMessages: addMessages,
