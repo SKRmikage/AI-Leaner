@@ -1,0 +1,14 @@
+{
+  "name": "study-planner",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI 學習規劃助手：AI 導師對話、學習規劃、日程表、學習材料管理（純前端，無需建置）",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "serve": "npx --yes serve .",
+    "test": "node tests/smoke.test.js"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.0"
+  }
+}
